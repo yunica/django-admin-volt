@@ -159,3 +159,9 @@ cython_debug/
 #.idea/
 
 dist
+
+#
+manage.py
+db.sqlite3
+djangoProject
+.idea/

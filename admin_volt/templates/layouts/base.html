@@ -32,15 +32,8 @@
   {% endblock sidebar %}
 
   <main class="content">
-    {% block header %}
-      {% include 'includes/navigation.html' %}
-    {% endblock header %}
 
     {% block content %}{% endblock content %}
-
-    {% block theme_settings %}
-      {% include 'includes/theme-settings.html' %}
-    {% endblock theme_settings %}
 
     {% block footer %}
       {% include 'includes/footer.html' %}
