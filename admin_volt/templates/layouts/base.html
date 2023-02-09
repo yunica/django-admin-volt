@@ -1,46 +1,46 @@
-<!--
+{% load i18n static %}<!DOCTYPE html>
+{% get_current_language as LANGUAGE_CODE %}
+{% get_current_language_bidi as LANGUAGE_BIDI %}
+<html lang="{{ LANGUAGE_CODE|default:" en-us" }}" dir="{{ LANGUAGE_BIDI|yesno:'rtl,ltr,auto' }}">
 
-=========================================================
-* Volt Free - Bootstrap 5 Dashboard
-=========================================================
+<head>
+  <title>{% block title %}{% endblock %}</title>
 
-* Product Page: https://themesberg.com/product/admin-dashboard/volt-bootstrap-5-dashboard
-* Copyright 2021 Themesberg (https://www.themesberg.com)
-* License (https://themesberg.com/licensing)
-
-* Designed and coded by https://themesberg.com
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. Please contact us to request a removal.
-
--->
-<!DOCTYPE html>
-<html lang="en">
-
-<head> 
   {% include 'includes/head.html' %}
-  {% block extrastyle %}{% endblock extrastyle %}
+  {% block extrastyle %}
+    {{ block.super }}
+  {% endblock extrastyle %}
+  {% block extrahead %}{% endblock %}
+
 </head>
 
-  {% block nav %}
-    {% include 'includes/nav.html' %}
-  {% endblock nav %}
+{% block nav %}
+  {% include 'includes/nav.html' %}
+{% endblock nav %}
 
-  {% block sidebar %}
-    {% include 'includes/sidebar.html' %}
-  {% endblock sidebar %}
+{% block sidebar %}
+  {% include 'includes/sidebar.html' %}
+{% endblock sidebar %}
 
-  <main class="content">
+<main class="content">
+  {% if messages %}
+    <div class="row mt-4 mx-2">
+      {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}" role="alert">{{ message|capfirst }}</div>
+      {% endfor %}
+    </div>
+  {% endif %}
+        {% block pretitle %}{% endblock %}
 
-    {% block content %}{% endblock content %}
+  {% block content %}{% endblock content %}
 
-    {% block footer %}
-      {% include 'includes/footer.html' %}
-    {% endblock footer %}
+  {% block footer %}
+    {% include 'includes/footer.html' %}
+  {% endblock footer %}
 
-  </main>
+</main>
 
-  {% include 'includes/scripts.html' %}
-  {% block extra_js %}{% endblock extra_js %}
-<body>
+{% include 'includes/scripts.html' %}
+{% block extra_js %}{% endblock extra_js %}
+
+<body class="{% if is_popup %}popup {% endif %}{% block bodyclass %}{% endblock %}" data-admin-utc-offset="{% now " Z" %}">

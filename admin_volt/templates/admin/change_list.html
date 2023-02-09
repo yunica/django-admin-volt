@@ -10,7 +10,6 @@
     {% if cl.formset or action_form %}
         <script type="text/javascript" src="{% url 'admin:jsi18n' %}"></script>
     {% endif %}
-    {{ media.css }}
     {% if not actions_on_top and not actions_on_bottom %}
         <style>
             #changelist table thead th:first-child {
@@ -110,7 +109,7 @@
                         <div class="card-header filter_card_header">
                             <h5>{% trans 'Filter' %}</h5>
                         </div>
-                        <div class="card-body">
+                        <div class="card-body ps-0 pe-0 ">
                             {% for spec in cl.filter_specs %}
                                 {% admin_list_filter cl spec %}
                             {% endfor %}

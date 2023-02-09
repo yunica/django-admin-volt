@@ -88,3 +88,27 @@ def sum_number(value, number):
 @register.filter
 def neg_num(value, number):
     return value - number
+
+
+@register.filter
+def custom_class_field(value):
+    try:
+        pass
+        # subwidgets = getattr(value, "subwidgets", [])
+        # widget_type = getattr(value, "widget_type", "")
+        # print(widget_type)
+        # if type(subwidgets) != list:
+        #     return value
+        # for subwidget in subwidgets:
+        #     data = getattr(subwidget, "data", {})
+        #     classes = data.get("attrs", {}).get("class", "")
+        #
+        #     type_ = data.get("type", "")
+        #     if classes:
+        #         data["attrs"]["class"] = f"{classes} form-control "
+
+    except Exception as es:
+        print(es)
+        pass
+
+    return value
